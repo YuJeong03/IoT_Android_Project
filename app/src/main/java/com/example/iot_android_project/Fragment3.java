@@ -1,20 +1,18 @@
 package com.example.iot_android_project;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-/**
- * Created by Administrator on 2016-10-11.
- */
 public class Fragment3 extends Fragment {
-
-    public static Fragment3 newInstance(){
-        Fragment3 fragment = new Fragment3();
-        return fragment;
+    public Fragment3()
+    {
+        // required
     }
 
     @Override
@@ -22,11 +20,14 @@ public class Fragment3 extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment3,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 
-        return view;
+                             @Nullable Bundle savedInstanceState) {
+        RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.fragment3,
+
+                container, false);
+        return layout;
     }
 }

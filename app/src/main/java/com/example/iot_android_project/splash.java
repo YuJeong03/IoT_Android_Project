@@ -1,8 +1,7 @@
 package com.example.iot_android_project;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -20,4 +19,5 @@ public class splash extends Activity {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
 }
