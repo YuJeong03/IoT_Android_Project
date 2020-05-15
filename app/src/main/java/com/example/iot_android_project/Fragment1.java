@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
@@ -22,12 +23,8 @@ public class Fragment1 extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-
-                             @Nullable Bundle savedInstanceState) {
-        RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.fragment1,
-
-                container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.fragment1,container, false);
         return layout;
     }
 }
