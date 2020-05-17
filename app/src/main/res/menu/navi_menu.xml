@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/account"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:id="@+id/profile"
+            android:icon="@drawable/social"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:title="계정"
+            android:title="프로필 수정"
             />
         <item
-            android:id="@+id/setting"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:id="@+id/chatting"
+            android:icon="@drawable/interface11"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:title="설정"
+            android:title="채팅"
             />
         <item
             android:id="@+id/logout"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/web"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:title="로그아웃"
             />

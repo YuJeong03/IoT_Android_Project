@@ -19,19 +19,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="강아지" />
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="고양이" />
+                <RadioButton
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="고양이" />
+
+                <RadioButton
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="강아지" />
+            </RadioGroup>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -39,7 +47,56 @@
         android:id="@+id/dog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="반려동물 수" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/dogbox_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1마리" />
+
+                    <RadioButton
+                        android:id="@+id/dogbox_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2마리" />
+
+                    <RadioButton
+                        android:id="@+id/dogbox_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3마리 이상" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,14 +114,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/dogbox_1"
+                    android:id="@+id/dogbox_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="미니(1.5kg ~ 4kg)" />
 
                 <CheckBox
-                    android:id="@+id/dogbox_2"
+                    android:id="@+id/dogbox_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -79,14 +136,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/dogbox_3"
+                    android:id="@+id/dogbox_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="중형(9kg ~ 20kg)" />
 
                 <CheckBox
-                    android:id="@+id/dogbox_4"
+                    android:id="@+id/dogbox_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -111,14 +168,14 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/dogbox_5"
+                    android:id="@+id/dogbox_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="단기간" />
 
                 <CheckBox
-                    android:id="@+id/dogbox_6"
+                    android:id="@+id/dogbox_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -150,7 +207,8 @@
         android:id="@+id/cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

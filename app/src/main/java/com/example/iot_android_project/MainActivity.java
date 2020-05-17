@@ -2,12 +2,14 @@ package com.example.iot_android_project;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -18,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager pager;
-    NavigationView listview = null ;
+    NavigationView listview ;
     ImageButton menu;
     View v1, v2;
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         pager = (ViewPager)findViewById(R.id.pager);
         final Button btn_first = (Button)findViewById(R.id.btn_first);
-        Button btn_second = (Button)findViewById(R.id.btn_second);
+        final Button btn_second = (Button)findViewById(R.id.btn_second);
         menu = (ImageButton)findViewById(R.id.menu1);
 
         v1 = (View) findViewById(R.id.view2);
@@ -43,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int tag = (int)view.getTag();
+                if(tag==0){
+                    v1.setBackgroundColor(Color.rgb(121, 134, 203));
+                    v2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                }
+                else if(tag==1){
+                    v2.setBackgroundColor(Color.rgb(121, 134, 203));
+                    v1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                }
                 pager.setCurrentItem(tag);
 
             }
@@ -53,35 +63,17 @@ public class MainActivity extends AppCompatActivity {
         btn_second.setOnClickListener(movePageListener);
         btn_second.setTag(1);
 
-        btn_first.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v1.setBackgroundColor(Color.rgb(121, 134, 203));
-                v2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-            }
-        });
-
-        btn_second.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v2.setBackgroundColor(Color.rgb(121, 134, 203));
-                v1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-            }
-        });
-
-
-
         final String[] items = {"WHITE", "RED", "GREEN", "BLUE", "BLACK"} ;
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items) ;
 
         listview = (NavigationView) findViewById(R.id.nav_view) ;
-        listview.getMenu();
 
+        final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                drawerLayout.openDrawer(Gravity.LEFT);
+                listview.getMenu();
             }
         });
 //        listview.setOnItemClickListener(new ListView.OnItemClickListener() {

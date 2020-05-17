@@ -9,19 +9,24 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_first"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="#FDC2A9"
-            android:fontFamily="@font/binggrae"
-            android:stateListAnimator="@null"
-            android:text="위치 선택"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/networking"
+            android:stateListAnimator="@null" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="위치를 선택해주세요"
+            android:inputType="textPersonName"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn_second"
@@ -52,7 +57,7 @@
         android:fontFamily="@font/binggrae"
         android:text="맡아주기 목록"
         android:textColor="#7986CB"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ListView
         android:layout_width="match_parent"
