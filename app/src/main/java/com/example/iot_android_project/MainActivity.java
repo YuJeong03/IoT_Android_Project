@@ -1,15 +1,16 @@
 package com.example.iot_android_project;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager pager;
     NavigationView listview = null ;
-
+    ImageButton menu;
+    View v1, v2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
         pager = (ViewPager)findViewById(R.id.pager);
         final Button btn_first = (Button)findViewById(R.id.btn_first);
         Button btn_second = (Button)findViewById(R.id.btn_second);
-        Button btn_third = (Button)findViewById(R.id.btn_third);
+        menu = (ImageButton)findViewById(R.id.menu1);
+
+        v1 = (View) findViewById(R.id.view2);
+        v2 = (View) findViewById(R.id.view4);
 
         pager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(0);
@@ -47,8 +52,24 @@ public class MainActivity extends AppCompatActivity {
         btn_first.setTag(0);
         btn_second.setOnClickListener(movePageListener);
         btn_second.setTag(1);
-        btn_third.setOnClickListener(movePageListener);
-        btn_third.setTag(2);
+
+        btn_first.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v1.setBackgroundColor(Color.rgb(121, 134, 203));
+                v2.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            }
+        });
+
+        btn_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v2.setBackgroundColor(Color.rgb(121, 134, 203));
+                v1.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+            }
+        });
+
+
 
         final String[] items = {"WHITE", "RED", "GREEN", "BLUE", "BLACK"} ;
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items) ;
@@ -56,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
         listview = (NavigationView) findViewById(R.id.nav_view) ;
         listview.getMenu();
 
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 //        listview.setOnItemClickListener(new ListView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -90,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+
     }
 
     private class pagerAdapter extends FragmentPagerAdapter
@@ -107,8 +137,6 @@ public class MainActivity extends AppCompatActivity {
                     return new Fragment1();
                 case 1:
                     return new Fragment2();
-                case 2:
-                    return new Fragment3();
                 default:
                     return null;
             }
@@ -117,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // total page count
-            return 3;
+            return 2;
         }
     }
 }
