@@ -20,10 +20,19 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/RG1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="강아지" />
 
                 <RadioButton
                     android:id="@+id/checkBox2"
@@ -32,12 +41,6 @@
                     android:layout_weight="1"
                     android:text="고양이" />
 
-                <RadioButton
-                    android:id="@+id/checkBox1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="강아지" />
             </RadioGroup>
 
         </LinearLayout>
@@ -66,6 +69,7 @@
                 android:orientation="horizontal">
 
                 <RadioGroup
+                    android:id="@+id/RG2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -167,19 +171,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/dogbox_7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <RadioGroup
+                    android:id="@+id/RG3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="단기간" />
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/dogbox_8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="장기간 (하루 이상)" />
+                    <RadioButton
+                        android:id="@+id/dogbox_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="단기간" />
+
+                    <RadioButton
+                        android:id="@+id/dogbox_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="장기간 (하루 이상)" />
+                </RadioGroup>
 
             </LinearLayout>
         </LinearLayout>
@@ -225,19 +237,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/catbox_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <RadioGroup
+                    android:id="@+id/RG4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="단기간" />
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/catbox_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="장기간 (하루 이상)" />
+                    <RadioButton
+                        android:id="@+id/catbox_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="단기간" />
+
+                    <RadioButton
+                        android:id="@+id/catbox_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="장기간 (하루 이상)" />
+
+                </RadioGroup>
 
             </LinearLayout>
         </LinearLayout>
