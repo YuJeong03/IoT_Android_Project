@@ -1,7 +1,4 @@
 package com.example.iot_android_project;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,6 +14,7 @@ import androidx.fragment.app.Fragment;
 public class Fragment1 extends Fragment {
 
     private Object Button;
+    static TextView location;
 
     public Fragment1()
     {
@@ -36,7 +32,7 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.fragment1,container, false);
         Button btn1 = (Button)layout.findViewById(R.id.btn_second);
-        TextView location = (TextView)layout.findViewById(R.id.location);
+        location = (TextView)layout.findViewById(R.id.location);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,11 +45,15 @@ public class Fragment1 extends Fragment {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Dialog_a dlg;
                 dlg = new Dialog_a(container.getContext());
                 dlg.show();
+
             }
+
         });
+
         return layout;
     }
 }

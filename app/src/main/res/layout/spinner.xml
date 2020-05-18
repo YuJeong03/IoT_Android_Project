@@ -4,12 +4,14 @@
     style="?android:attr/dropDownItemStyle"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#FBE9E7"
+    android:layout_gravity="center|center_horizontal|center_vertical"
+    android:layout_weight="1"
     android:ellipsize="marquee"
     android:fontFamily="@font/binggrae"
+    android:gravity="center|center_horizontal|center_vertical"
     android:singleLine="true"
     android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
-    android:textColor="#FFFFFF"
-    android:textSize="20dp">
+    android:textColor="#7986CB"
+    android:textSize="20sp">
 
 </TextView>
