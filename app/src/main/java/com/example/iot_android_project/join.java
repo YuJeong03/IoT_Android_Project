@@ -22,7 +22,7 @@ public class join extends AppCompatActivity {
 
     EditText id_edit, pw_edit, name_edit, pw_edit_1, phone_edit;
     RadioButton man, woman;
-    String gender;
+    String gender_string;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +48,15 @@ public class join extends AppCompatActivity {
         man.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "0";
+                gender_string = "male";
+                Toast.makeText(getApplicationContext(), gender_string, Toast.LENGTH_LONG).show();
             }
         });
 
         woman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "1";
+                gender_string = "female";
             }
         });
     }
@@ -64,13 +65,14 @@ public class join extends AppCompatActivity {
         String id = id_edit.getText().toString();
         String pw = pw_edit.getText().toString();
         String name = name_edit.getText().toString();
+        String gender = gender_string;
         String phone = phone_edit.getText().toString();
-        String gender_value = gender;
 
-        insertoToDatabase(id, pw, name, phone, gender_value);
+
+        insertoToDatabase(id, pw, name,gender,phone);
     }
 
-    private void insertoToDatabase(final String id, final String pw, final String name, final String phone, final String gender_value) {
+    private void insertoToDatabase(final String id, final String pw, final String name, final  String gender, final String phone) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -86,6 +88,14 @@ public class join extends AppCompatActivity {
                 loading.dismiss();
                 Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
 
+//                Intent intent = new Intent(signup.this, map_plan2_2.class);
+//
+////                intent.putExtra("trip_area", trip_name);
+////                intent.putExtra("date_y", date_y);
+////                intent.putExtra("date_m", date_m);
+////                intent.putExtra("date_d", date_d);
+//
+//                startActivity(intent);
                 finish();
             }
 
@@ -97,16 +107,14 @@ public class join extends AppCompatActivity {
                     String pw = (String) params[1];
                     String name = (String) params[2];
                     String phone = (String) params[3];
-                    String gender_value = (String) params[4];
-
+                    String gender = (String) params[4];
 
                     String link = "http://203.234.62.84:8088/member_insert.php";
                     String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
                     data += "&" + URLEncoder.encode("pw", "UTF-8") + "=" + URLEncoder.encode(pw, "UTF-8");
                     data += "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(phone, "UTF-8");
-                    data += "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender_value, "UTF-8");
-
+                    data += "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -134,7 +142,7 @@ public class join extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(id, pw, name, phone, gender_value);
+        task.execute(id, pw, name, phone, gender);
 
 
     }
