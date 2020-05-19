@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -36,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginBottom="20dp"
             android:gravity="left"
             android:orientation="horizontal">
 
@@ -56,10 +58,10 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="#FDC2A9"
+                android:textColor="#000000"
                 android:textColorHighlight="#FDC2A9"
                 android:textColorLink="#FDC2A9"
-                android:textSize="36sp"
+                android:textSize="18sp"
                 app:fontFamily="@font/binggrae_bold" />
         </LinearLayout>
 
@@ -67,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -86,7 +88,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:textSize="36sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

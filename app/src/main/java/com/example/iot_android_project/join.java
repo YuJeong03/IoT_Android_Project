@@ -2,32 +2,61 @@ package com.example.iot_android_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.RadioButton;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class join extends AppCompatActivity {
+
+    String myJSON;
 
     EditText id_edit, pw_edit, name_edit, pw_edit_1, phone_edit;
     RadioButton man, woman;
     String gender_string;
+
+    ImageButton imgbtn;
+
+    Boolean a = false;
+    ArrayList<member> idArrayList = new ArrayList<>();
+    private static final String TAG_RESULTS = "result";
+    private static final String TAG_id = "id";
+    JSONArray idArray = null;
+    ArrayList<String> idList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+
+        getData("http://203.234.62.84:8088/id_getdata.php");
+
+        idList = new ArrayList<>();
         name_edit = (EditText) findViewById(R.id.editText);
         id_edit = (EditText) findViewById(R.id.editText2);
         pw_edit = (EditText) findViewById(R.id.editText3);
@@ -35,13 +64,30 @@ public class join extends AppCompatActivity {
         phone_edit = (EditText) findViewById(R.id.editText5);
         man = (RadioButton) findViewById(R.id.radioButton);
         woman = (RadioButton) findViewById(R.id.radioButton2);
+        imgbtn = (ImageButton) findViewById(R.id.imageButton);
 
         Button sign_up = (Button) findViewById(R.id.button2);
+        Button check = (Button) findViewById(R.id.button4);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert(v);
+                if(name_edit.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "이름을 입력하세요.", Toast.LENGTH_LONG).show();
+                }else if(id_edit.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "아이디를 입력하세요.", Toast.LENGTH_LONG).show();
+                }else if(pw_edit.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                }else if(phone_edit.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "전화번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                }else if(a==false){
+                    Toast.makeText(getApplicationContext(), "아이디 중복을 확인하세요.", Toast.LENGTH_LONG).show();
+                }else if(pw_edit.getText().toString().equals(pw_edit_1.getText().toString())){
+                    insert(v);
+                }else{
+                    Toast.makeText(getApplicationContext(), "비밀번호를 확인하세요.", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -49,7 +95,6 @@ public class join extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gender_string = "male";
-                Toast.makeText(getApplicationContext(), gender_string, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -57,6 +102,40 @@ public class join extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gender_string = "female";
+            }
+        });
+
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(id_edit.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "ID를 입력해주세요!", Toast.LENGTH_LONG).show();}
+                else{
+                for(int i = 0; i<idList.size(); i++) {
+                    String ab = idList.get(i).toString();
+                    if (ab.equals(id_edit.getText().toString())) {
+                        a = false;
+                        break;
+                    } else {
+                        a = true;
+                    }
+                }
+                    if (a == false) {
+                        Toast.makeText(getApplicationContext(), "중복!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "사용 가능!", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            }
+        });
+
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), login.class);
+                startActivity(intent);
             }
         });
     }
@@ -143,7 +222,68 @@ public class join extends AppCompatActivity {
         }
         InsertData task = new InsertData();
         task.execute(id, pw, name, phone, gender);
+    }
 
+    protected void showList() {
+        try {
+            JSONObject jsonObj = new JSONObject(myJSON);
+            idArray = jsonObj.getJSONArray(TAG_RESULTS);
+
+
+            for (int i = 0; i < idArray.length(); i++) {
+                member id2 = new member();
+                JSONObject c = idArray.getJSONObject(i);
+                String id = c.getString(TAG_id);
+
+                idList.add(id);
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
+
+    public void getData(String url) {
+        class GetDataJSON extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                String uri = params[0];
+
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL(uri);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+
+                    return sb.toString().trim();
+
+                } catch (Exception e) {
+                    return null;
+                }
+
+
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                myJSON = result;
+                showList();
+            }
+        }
+        GetDataJSON g = new GetDataJSON();
+        g.execute(url);
+    }
+
 }

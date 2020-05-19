@@ -1,14 +1,18 @@
 package com.example.iot_android_project;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ViewPager pager;
     NavigationView listview ;
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         pager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(0);
 
-        View.OnClickListener movePageListener = new View.OnClickListener()
+        final View.OnClickListener movePageListener = new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
@@ -63,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         btn_second.setOnClickListener(movePageListener);
         btn_second.setTag(1);
 
-        final String[] items = {"WHITE", "RED", "GREEN", "BLUE", "BLACK"} ;
-
         listview = (NavigationView) findViewById(R.id.nav_view) ;
 
         final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
@@ -76,43 +78,29 @@ public class MainActivity extends AppCompatActivity {
                 listview.getMenu();
             }
         });
-//        listview.setOnItemClickListener(new ListView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView parent, View v, int position, long id) {
-//
-//
-//                switch (position) {
-//                    case 0: // WHITE
-//                        contentTextview.setBackgroundColor(Color.rgb(0xFF, 0xFF, 0xFF));
-//                        contentTextview.setTextColor(Color.rgb(0x00, 0x00, 0x00));
-//                        contentTextview.setText("WHITE");
-//                        break;
-//                    case 1: // RED
-//                        contentTextview.setBackgroundColor(Color.rgb(0xFF, 0x00, 0x00));
-//                        contentTextview.setTextColor(Color.rgb(0xFF, 0xFF, 0xFF));
-//                        contentTextview.setText("RED");
-//                        break;
-//                    case 2: // GREEN
-//                        contentTextview.setBackgroundColor(Color.rgb(0x00, 0xFF, 0x00));
-//                        contentTextview.setTextColor(Color.rgb(0x00, 0x00, 0x00));
-//                        contentTextview.setText("GREEN");
-//                        break;
-//                    case 3: // BLUE
-//                        contentTextview.setBackgroundColor(Color.rgb(0x00, 0x00, 0xFF));
-//                        contentTextview.setTextColor(Color.rgb(0xFF, 0xFF, 0xFF));
-//                        contentTextview.setText("BLUE");
-//                        break;
-//                    case 4: // BLACK
-//                        contentTextview.setBackgroundColor(Color.rgb(0x00, 0x00, 0x00));
-//                        contentTextview.setTextColor(Color.rgb(0xFF, 0xFF, 0xFF));
-//                        contentTextview.setText("BLACK");
-//                        break;
-//                }
-//            }
-//        });
+
+        listview.setNavigationItemSelectedListener(this);
 
 
     }
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.profile) {
+
+        } else if (id == R.id.chatting) {
+
+        } else if (id == R.id.logout) {
+            Intent intent = new Intent(getApplicationContext(), login.class);
+            startActivity(intent);
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 
     private class pagerAdapter extends FragmentPagerAdapter
     {
