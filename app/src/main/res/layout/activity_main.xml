@@ -23,7 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -51,7 +53,7 @@
                     android:gravity="center|center_horizontal"
                     android:text="Good Care"
                     android:textColor="#7986CB"
-                    android:textSize="36sp" />
+                    android:textSize="40sp" />
 
             </LinearLayout>
 

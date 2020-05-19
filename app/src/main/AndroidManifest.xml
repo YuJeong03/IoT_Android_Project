@@ -9,8 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Dialog"></activity>
-        <activity android:name=".fragment1_1" />
+        <activity android:name=".join"></activity>
+        <activity android:name=".login" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name=".Dialog_a" />
+        <activity
+            android:name=".fragment1_1"
+            android:label="Good Care"
+            android:theme="@style/Theme" />
         <activity
             android:name=".splash"
             android:screenOrientation="portrait"
