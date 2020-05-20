@@ -58,13 +58,21 @@ public class fragment1_1 extends AppCompatActivity {
             d = updateLabel();
             if (a == 1) {
                 date1.setText(d);
-                Date += d + " ~ ";
+                if(Service.equals("장기간")) {
+                    Date += d + " ~ ";
+                } else if(Service.equals("단기간")){
+                    Date += d;
+                }
             } else if (a == 2) {
                 date2.setText(d);
                 Date += d;
             } else if (a == 3) {
                 date3.setText(d);
-                Date += d+ " ~ ";
+                if(Service.equals("장기간")) {
+                    Date += d + " ~ ";
+                } else if(Service.equals("단기간")){
+                    Date += d;
+                }
             } else if (a == 4) {
                 date4.setText(d);
                 Date += d;
@@ -323,8 +331,8 @@ public class fragment1_1 extends AppCompatActivity {
         dog_RB_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                date1.setVisibility(View.GONE);
-                date2.setVisibility(View.GONE);
+                date1.setVisibility(View.VISIBLE);
+                date2.setVisibility(View.INVISIBLE);
                 dog_date.setVisibility(View.VISIBLE);
                 Service = "단기간";
                 Date = " ";
@@ -344,8 +352,8 @@ public class fragment1_1 extends AppCompatActivity {
         cat_ch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                date3.setVisibility(View.GONE);
-                date4.setVisibility(View.GONE);
+                date3.setVisibility(View.VISIBLE);
+                date4.setVisibility(View.INVISIBLE);
                 Service = "단기간";
                 Date = " ";
                 cat_date.setVisibility(View.VISIBLE);
@@ -404,9 +412,9 @@ public class fragment1_1 extends AppCompatActivity {
         String count = Count;
         String size = Size;
         String service = Service;
-        String date = Date;
-        String time = Time;
-        String address = address1;
+        String date = " " + Date;
+        String time = " " +Time;
+        String address = " " + address1;
 
         insertoToDatabase(id, type, count, size, service, date, time, address);
     }
@@ -427,15 +435,10 @@ public class fragment1_1 extends AppCompatActivity {
                 loading.dismiss();
                 Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
 
-//                Intent intent = new Intent(signup.this, map_plan2_2.class);
-//
-////                intent.putExtra("trip_area", trip_name);
-////                intent.putExtra("date_y", date_y);
-////                intent.putExtra("date_m", date_m);
-////                intent.putExtra("date_d", date_d);
-//
-//                startActivity(intent);
-                finish();
+                Intent intent = new Intent(fragment1_1.this, MainActivity.class);
+
+                startActivity(intent);
+
             }
 
             @Override
