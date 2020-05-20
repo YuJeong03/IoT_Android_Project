@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -34,8 +35,6 @@ import java.util.Calendar;
 
 public class fragment1_1 extends AppCompatActivity {
 
-    Intent intent = getIntent();
-    String id1 = intent.getStringExtra("id");
 
     Button btn;
     RadioGroup RG1, RG2, RG3;
@@ -46,8 +45,9 @@ public class fragment1_1 extends AppCompatActivity {
     LinearLayout dog, cat, dog_date, cat_date;
     final Calendar cal = Calendar.getInstance();
     String d = "";
-    String Dog, Cat, Count, Size, Service, Date, Time;
+    String Dog = "강아지", Cat, Count = "1마리", Size = " ", Service, Date=" ", Time, b = "0";
     int a = 0;
+    String id1, address1;
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -56,18 +56,18 @@ public class fragment1_1 extends AppCompatActivity {
             cal.set(Calendar.MONTH, month);
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             d = updateLabel();
-            if(a==1){
+            if (a == 1) {
                 date1.setText(d);
-                Date = d;
-            } else if(a==2){
+                Date += d + " ~ ";
+            } else if (a == 2) {
                 date2.setText(d);
-                Date = d;
-            }else if(a==3){
+                Date += d;
+            } else if (a == 3) {
                 date3.setText(d);
-                Date = d;
-            }else if(a==4){
+                Date += d+ " ~ ";
+            } else if (a == 4) {
                 date4.setText(d);
-                Date = d;
+                Date += d;
             }
 
         }
@@ -78,34 +78,50 @@ public class fragment1_1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment1_1);
 
-        RG1 = (RadioGroup)findViewById(R.id.RG1); RG2 = (RadioGroup)findViewById(R.id.RG2); RG3 = (RadioGroup)findViewById(R.id.RG3);
-        RB1 = (RadioButton)findViewById(R.id.checkBox1); RB2 = (RadioButton)findViewById(R.id.checkBox2);
-        dog_RB1_1 = (RadioButton)findViewById(R.id.dogbox_1_1); dog_RB1_2 = (RadioButton)findViewById(R.id.dogbox_1_2); dog_RB1_3 = (RadioButton)findViewById(R.id.dogbox_1_3);
-        dog_ch3 = (CheckBox)findViewById(R.id.dogbox_3); dog_ch4 = (CheckBox)findViewById(R.id.dogbox_4); dog_ch5 = (CheckBox)findViewById(R.id.dogbox_5); dog_ch6 = (CheckBox)findViewById(R.id.dogbox_6);
-        dog_RB_4 = (RadioButton)findViewById(R.id.dogbox_7); dog_RB_5 = (RadioButton)findViewById(R.id.dogbox_8);
-        cat_ch1 = (RadioButton)findViewById(R.id.catbox_1); cat_ch2 = (RadioButton)findViewById(R.id.catbox_2);
-        date1 = (TextView)findViewById(R.id.textView6);
-        date2 = (TextView)findViewById(R.id.textView7);
-        date3 = (TextView)findViewById(R.id.textView8);
-        date4 = (TextView)findViewById(R.id.textView9);
-        time1 = (TextView)findViewById(R.id.textView10);
-        time2 = (TextView)findViewById(R.id.textView11);
-        time3 = (TextView)findViewById(R.id.textView12);
-        time4 = (TextView)findViewById(R.id.textView13);
-        dog = (LinearLayout)findViewById(R.id.dog);
-        cat = (LinearLayout)findViewById(R.id.cat);
-        dog_date = (LinearLayout)findViewById(R.id.dog_date);
-        cat_date = (LinearLayout)findViewById(R.id.cat_date);
-        btn = (Button)findViewById(R.id.button5);
+        Intent intent = getIntent();
+        id1 = intent.getStringExtra("id");
+        address1 = intent.getStringExtra("address");
+
+        RG1 = (RadioGroup) findViewById(R.id.RG1);
+        RG2 = (RadioGroup) findViewById(R.id.RG2);
+        RG3 = (RadioGroup) findViewById(R.id.RG3);
+        RB1 = (RadioButton) findViewById(R.id.checkBox1);
+        RB2 = (RadioButton) findViewById(R.id.checkBox2);
+        dog_RB1_1 = (RadioButton) findViewById(R.id.dogbox_1_1);
+        dog_RB1_2 = (RadioButton) findViewById(R.id.dogbox_1_2);
+        dog_RB1_3 = (RadioButton) findViewById(R.id.dogbox_1_3);
+        dog_ch3 = (CheckBox) findViewById(R.id.dogbox_3);
+        dog_ch4 = (CheckBox) findViewById(R.id.dogbox_4);
+        dog_ch5 = (CheckBox) findViewById(R.id.dogbox_5);
+        dog_ch6 = (CheckBox) findViewById(R.id.dogbox_6);
+        dog_RB_4 = (RadioButton) findViewById(R.id.dogbox_7);
+        dog_RB_5 = (RadioButton) findViewById(R.id.dogbox_8);
+        cat_ch1 = (RadioButton) findViewById(R.id.catbox_1);
+        cat_ch2 = (RadioButton) findViewById(R.id.catbox_2);
+        date1 = (TextView) findViewById(R.id.textView6);
+        date2 = (TextView) findViewById(R.id.textView7);
+        date3 = (TextView) findViewById(R.id.textView8);
+        date4 = (TextView) findViewById(R.id.textView9);
+        time1 = (TextView) findViewById(R.id.textView10);
+        time2 = (TextView) findViewById(R.id.textView11);
+        time3 = (TextView) findViewById(R.id.textView12);
+        time4 = (TextView) findViewById(R.id.textView13);
+        dog = (LinearLayout) findViewById(R.id.dog);
+        cat = (LinearLayout) findViewById(R.id.cat);
+        dog_date = (LinearLayout) findViewById(R.id.dog_date);
+        cat_date = (LinearLayout) findViewById(R.id.cat_date);
+        btn = (Button) findViewById(R.id.button5);
 
         RB1.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               dog.setVisibility(View.VISIBLE);
-               cat.setVisibility(View.GONE);
-               Dog = "강아지";
-           }
-       });
+            @Override
+            public void onClick(View v) {
+                dog.setVisibility(View.VISIBLE);
+                cat.setVisibility(View.GONE);
+                Dog = "강아지";
+                Cat = " ";
+
+            }
+        });
 
         dog_RB1_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,50 +145,37 @@ public class fragment1_1 extends AppCompatActivity {
         dog_ch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Size += "미니(1.5kg ~ 4kg) ";
+                b += "1 ";
             }
         });
         dog_ch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Size += "일반(5kg ~ 8kg) ";
+                b += "2 ";
             }
         });
         dog_ch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Size += "중형(9kg ~ 20kg) ";
+                b += "3 ";
             }
         });
         dog_ch6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Size += "대형(20kg ~ 40kg) ";
+                b = "4 ";
             }
         });
-
-        dog_RB_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Service = "단기간";
-            }
-        });
-
-        dog_RB_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Service = "장기간";
-            }
-        });
-
-
 
         RB2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cat.setVisibility(View.VISIBLE);
                 dog.setVisibility(View.GONE);
+                Dog = " ";
                 Cat = "고양이";
+                Count = " ";
+                Size = " ";
             }
         });
 
@@ -181,6 +184,7 @@ public class fragment1_1 extends AppCompatActivity {
             public void onClick(View v) {
                 new DatePickerDialog(fragment1_1.this, myDatePicker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
                 a = 1;
+
             }
         });
 
@@ -208,7 +212,7 @@ public class fragment1_1 extends AppCompatActivity {
             }
         });
 
-        time1.setOnClickListener(new View.OnClickListener(){
+        time1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -227,7 +231,6 @@ public class fragment1_1 extends AppCompatActivity {
                         }
                         // EditText에 출력할 형식 지정
                         time1.setText(state + " " + selectedHour + "시 " + selectedMinute + "분");
-                        Time = state + " " + selectedHour + "시 " + selectedMinute + "분";
                     }
                 }, hour, minute, false); // true의 경우 24시간 형식의 TimePicker 출현
                 mTimePicker.setTitle("Select Time");
@@ -236,7 +239,7 @@ public class fragment1_1 extends AppCompatActivity {
             }
         });
 
-        time2.setOnClickListener(new View.OnClickListener(){
+        time2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -244,7 +247,7 @@ public class fragment1_1 extends AppCompatActivity {
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(fragment1_1.this,  android.R.style.Theme_Holo_Light_Dialog_NoActionBar, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(fragment1_1.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         String state = "AM";
@@ -255,8 +258,6 @@ public class fragment1_1 extends AppCompatActivity {
                         }
                         // EditText에 출력할 형식 지정
                         time2.setText(state + " " + selectedHour + "시 " + selectedMinute + "분");
-                        Time = state + " " + selectedHour + "시 " + selectedMinute + "분";
-
                     }
                 }, hour, minute, false); // true의 경우 24시간 형식의 TimePicker 출현
                 mTimePicker.setTitle("Select Time");
@@ -265,7 +266,7 @@ public class fragment1_1 extends AppCompatActivity {
             }
         });
 
-        time3.setOnClickListener(new View.OnClickListener(){
+        time3.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -284,7 +285,6 @@ public class fragment1_1 extends AppCompatActivity {
                         }
                         // EditText에 출력할 형식 지정
                         time3.setText(state + " " + selectedHour + "시 " + selectedMinute + "분");
-                        Time = state + " " + selectedHour + "시 " + selectedMinute + "분";
                     }
                 }, hour, minute, false); // true의 경우 24시간 형식의 TimePicker 출현
                 mTimePicker.setTitle("Select Time");
@@ -293,7 +293,7 @@ public class fragment1_1 extends AppCompatActivity {
             }
         });
 
-        time4.setOnClickListener(new View.OnClickListener(){
+        time4.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -312,7 +312,6 @@ public class fragment1_1 extends AppCompatActivity {
                         }
                         // EditText에 출력할 형식 지정
                         time4.setText(state + " " + selectedHour + "시 " + selectedMinute + "분");
-                        Time = state + " " + selectedHour + "시 " + selectedMinute + "분";
                     }
                 }, hour, minute, false); // true의 경우 24시간 형식의 TimePicker 출현
                 mTimePicker.setTitle("Select Time");
@@ -327,6 +326,8 @@ public class fragment1_1 extends AppCompatActivity {
                 date1.setVisibility(View.GONE);
                 date2.setVisibility(View.GONE);
                 dog_date.setVisibility(View.VISIBLE);
+                Service = "단기간";
+                Date = " ";
             }
         });
 
@@ -336,6 +337,7 @@ public class fragment1_1 extends AppCompatActivity {
                 date1.setVisibility(View.VISIBLE);
                 date2.setVisibility(View.VISIBLE);
                 dog_date.setVisibility(View.VISIBLE);
+                Service = "장기간";
             }
         });
 
@@ -344,6 +346,8 @@ public class fragment1_1 extends AppCompatActivity {
             public void onClick(View v) {
                 date3.setVisibility(View.GONE);
                 date4.setVisibility(View.GONE);
+                Service = "단기간";
+                Date = " ";
                 cat_date.setVisibility(View.VISIBLE);
             }
         });
@@ -352,6 +356,7 @@ public class fragment1_1 extends AppCompatActivity {
             public void onClick(View v) {
                 date3.setVisibility(View.VISIBLE);
                 date4.setVisibility(View.VISIBLE);
+                Service = "장기간";
                 cat_date.setVisibility(View.VISIBLE);
             }
         });
@@ -359,15 +364,32 @@ public class fragment1_1 extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Dog.equals("강아지")) {
-                    insert(v);
-                }else if(Cat.equals("고양이")) {
-                    //insert1(v);
+
+                if (b.contains("0")) {
+                    Size += " ";
+                }
+                if (b.contains("1")) {
+                    Size += "미니(1.5kg ~ 4kg) ";
+                }
+                if (b.contains("2")) {
+                    Size += "일반(5kg ~ 8kg) ";
+                }
+                if (b.contains("3")) {
+                    Size += "중형(9kg ~ 20kg) ";
+                }
+                if (b.contains("4")) {
+                    Size += "대형(20kg ~ 40kg) ";
+                }
+
+                if (Dog.equals("강아지")) {
+                    Time = time1.getText() + " ~ " + time2.getText();
+                    insert(v, Dog);
+                } else if (Cat.equals("고양이") && Dog.equals(" ")) {
+                    Time = time3.getText() + " ~ " + time4.getText();
+                    insert(v, Cat);
                 }
             }
         });
-
-
     }
 
     private String updateLabel() {
@@ -376,19 +398,20 @@ public class fragment1_1 extends AppCompatActivity {
         return sdf.format(cal.getTime());
     }
 
-    public void insert(View view) {
+    public void insert(View view, String a) {
         String id = id1;
-        String type = Dog;
+        String type = a;
         String count = Count;
         String size = Size;
         String service = Service;
         String date = Date;
         String time = Time;
+        String address = address1;
 
-        insertoToDatabase(id, type, count, size, service, date, time);
+        insertoToDatabase(id, type, count, size, service, date, time, address);
     }
 
-    private void insertoToDatabase(final String id, final String type, final String count, final  String size, final String service, final String date, final String time ) {
+    private void insertoToDatabase(final String id, final String type, final String count, final String size, final String service, final String date, final String time, final String address) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -426,15 +449,18 @@ public class fragment1_1 extends AppCompatActivity {
                     String service = (String) params[4];
                     String date = (String) params[5];
                     String time = (String) params[6];
+                    String address = (String) params[7];
 
-                    String link = "http://203.234.62.84:8088/care_inser1t.php";
+
+                    String link = "http://203.234.62.84:8088/care_insert.php";
                     String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
                     data += "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8");
                     data += "&" + URLEncoder.encode("count", "UTF-8") + "=" + URLEncoder.encode(count, "UTF-8");
                     data += "&" + URLEncoder.encode("size", "UTF-8") + "=" + URLEncoder.encode(size, "UTF-8");
                     data += "&" + URLEncoder.encode("service", "UTF-8") + "=" + URLEncoder.encode(service, "UTF-8");
-                    data += "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(data, "UTF-8");
+                    data += "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8");
                     data += "&" + URLEncoder.encode("time", "UTF-8") + "=" + URLEncoder.encode(time, "UTF-8");
+                    data += "&" + URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -462,90 +488,6 @@ public class fragment1_1 extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(id, type, count, size, service, date, time);
-
-
+        task.execute(id, type, count, size, service, date, time, address);
     }
-//
-//    public void insert1(View view) {
-//        String id = id1;
-//        String type = pw_edit.getText().toString();
-//        String count = name_edit.getText().toString();
-//        String service;
-//        String date;
-//
-//        insertoToDatabase1(id, pw, name);
-//    }
-//
-//    private void insertoToDatabase1(final String id, final String pw, final String name) {
-//        class InsertData extends AsyncTask<String, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(fragment1_1.this, "Please Wait", null, true, true);
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String s) {
-//                super.onPostExecute(s);
-//                loading.dismiss();
-//                Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
-//
-////                Intent intent = new Intent(signup.this, map_plan2_2.class);
-////
-//////                intent.putExtra("trip_area", trip_name);
-//////                intent.putExtra("date_y", date_y);
-//////                intent.putExtra("date_m", date_m);
-//////                intent.putExtra("date_d", date_d);
-////
-////                startActivity(intent);
-//                finish();
-//            }
-//
-//            @Override
-//            protected String doInBackground(String... params) {
-//
-//                try {
-//                    String id = (String) params[0];
-//                    String pw = (String) params[1];
-//                    String name = (String) params[2];
-//
-//                    String link = "http://203.234.62.84:8088/member_inser1t.php";
-//                    String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
-//                    data += "&" + URLEncoder.encode("pw", "UTF-8") + "=" + URLEncoder.encode(pw, "UTF-8");
-//                    data += "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
-//
-//
-//                    URL url = new URL(link);
-//                    URLConnection conn = url.openConnection();
-//
-//                    conn.setDoOutput(true);
-//                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-//
-//                    wr.write(data);
-//                    wr.flush();
-//
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//
-//                    StringBuilder sb = new StringBuilder();
-//                    String line = null;
-//
-//                    // Read Server Response
-//                    while ((line = reader.readLine()) != null) {
-//                        sb.append(line);
-//                        break;
-//                    }
-//                    return sb.toString();
-//                } catch (Exception e) {
-//                    return new String("Exception: " + e.getMessage());
-//                }
-//            }
-//        }
-//        InsertData task = new InsertData();
-//        task.execute(id, pw, name);
-//
-//
-//    }
 }

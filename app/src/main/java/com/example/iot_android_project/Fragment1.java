@@ -17,6 +17,7 @@ public class Fragment1 extends Fragment {
     private Object Button;
     static TextView location;
     static String id1;
+    static String address;
 
     public Fragment1(String id)
     {
@@ -43,6 +44,7 @@ public class Fragment1 extends Fragment {
                 Toast.makeText(getActivity(), id1, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), fragment1_1.class);
                 intent.putExtra("id", id1);
+                intent.putExtra("address", address);
                 startActivity(intent);
             }
         });
@@ -54,6 +56,7 @@ public class Fragment1 extends Fragment {
                 Dialog_a dlg;
                 dlg = new Dialog_a(container.getContext());
                 dlg.show();
+
 
             }
 

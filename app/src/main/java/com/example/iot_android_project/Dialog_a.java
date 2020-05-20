@@ -662,7 +662,7 @@ public class Dialog_a extends Dialog {
                     public void onClick(View v) {
 
                         Fragment1.location.setText(spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString());
-
+                        Fragment1.address = spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString();
                         dismiss();
                     }
                 });
