@@ -14,8 +14,9 @@
 
 
     <style name="Theme" parent="Theme.AppCompat.Light.DarkActionBar">
-
+        <item name="colorAccent">#FDC2A9</item>
         <item name="colorPrimary">#FDC2A9</item>                    <!-- 하단 움직이는 바 색-->
+        <item name="colorControlActivated">#7986CB</item>
     </style>
 
 </resources>

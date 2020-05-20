@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,9 +16,11 @@ public class Fragment1 extends Fragment {
 
     private Object Button;
     static TextView location;
+    static String id1;
 
-    public Fragment1()
+    public Fragment1(String id)
     {
+        id1 = id;
         // required
     }
 
@@ -29,7 +32,7 @@ public class Fragment1 extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.fragment1,container, false);
         Button btn1 = (Button)layout.findViewById(R.id.btn_second);
         location = (TextView)layout.findViewById(R.id.location);
@@ -37,7 +40,9 @@ public class Fragment1 extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity(), id1, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), fragment1_1.class);
+                intent.putExtra("id", id1);
                 startActivity(intent);
             }
         });

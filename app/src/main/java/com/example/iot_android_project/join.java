@@ -41,7 +41,6 @@ public class join extends AppCompatActivity {
     ImageButton imgbtn;
 
     Boolean a = false;
-    ArrayList<member> idArrayList = new ArrayList<>();
     private static final String TAG_RESULTS = "result";
     private static final String TAG_id = "id";
     JSONArray idArray = null;

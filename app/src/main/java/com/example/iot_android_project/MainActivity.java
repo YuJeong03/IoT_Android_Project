@@ -27,11 +27,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView listview ;
     ImageButton menu;
     View v1, v2;
+    static String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
         pager = (ViewPager)findViewById(R.id.pager);
         final Button btn_first = (Button)findViewById(R.id.btn_first);
@@ -114,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             switch(position)
             {
                 case 0:
-                    return new Fragment1();
+                    return new Fragment1(id);
                 case 1:
                     return new Fragment2();
                 default:

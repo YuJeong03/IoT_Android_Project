@@ -65,6 +65,7 @@ public class login extends AppCompatActivity {
                 for(int i = 0; i<membersArrayList.size(); i++){
                     if(membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())){
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("id", id.getText().toString());
                         startActivity(intent);
                     }
                     else if (membersArrayList.get(i).getId().equals(id.getText().toString())) {
