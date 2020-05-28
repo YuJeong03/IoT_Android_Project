@@ -67,6 +67,7 @@ public class login extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("id", id.getText().toString());
                         startActivity(intent);
+                        break;
                     }
                     else if (membersArrayList.get(i).getId().equals(id.getText().toString())) {
                         Toast.makeText(getApplication(), "PassWord가 틀렸습니다.", Toast.LENGTH_LONG).show();

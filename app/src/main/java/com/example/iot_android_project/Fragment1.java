@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -38,7 +39,6 @@ public class Fragment1 extends Fragment {
     private static final String TAG_COUNT = "count";
 
     private static final String TAG_SIZE = "size";
-    private static final String TAG_SERVICE = "service";
     private static final String TAG_DATE = "date";
     private static final String TAG_TIME = "time";
     private static final String TAG_ADDRESS = "address";
@@ -87,6 +87,21 @@ public class Fragment1 extends Fragment {
             }
         });
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Dialog_java dlg = new Dialog_java(container.getContext());
+                dlg.address.setText(caresArrayList.get(position).getAddress());
+                dlg.type.setText(caresArrayList.get(position).getType());
+                dlg.count.setText(caresArrayList.get(position).getCount());
+                dlg.size.setText(caresArrayList.get(position).getSize());
+                dlg.date.setText(caresArrayList.get(position).getDate());
+                dlg.time.setText(caresArrayList.get(position).getTime());
+
+                dlg.show();
+            }
+        });
+
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +111,11 @@ public class Fragment1 extends Fragment {
             }
         });
         return layout;
+
+
+
     }
+
 
     protected void showList() {
         try {
@@ -111,6 +130,7 @@ public class Fragment1 extends Fragment {
                 String count = c.getString(TAG_COUNT);
                 String size = c.getString(TAG_SIZE);
                 String date = c.getString(TAG_DATE);
+                String time = c.getString(TAG_TIME);
                 String address = c.getString(TAG_ADDRESS);
 
                 HashMap<String, String> care1 = new HashMap<String, String>();
@@ -119,12 +139,14 @@ public class Fragment1 extends Fragment {
                 care.setCount(count);
                 care.setSize(size);
                 care.setDate(date);
+                care.setTime(time);
                 care.setAddress(address);
 
                 care1.put(TAG_TYPE, type);
                 care1.put(TAG_COUNT, count);
                 care1.put(TAG_SIZE, size);
                 care1.put(TAG_DATE, date);
+                care1.put(TAG_TIME, time);
                 care1.put(TAG_ADDRESS, address);
 
                 caresArrayList.add(care);

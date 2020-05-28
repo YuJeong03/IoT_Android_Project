@@ -16,6 +16,7 @@
         <activity android:name=".join" />
         <activity android:name=".login" />
         <activity android:name=".Dialog_a" />
+        <activity android:name=".Dialog_java" />
         <activity
             android:name=".fragment1_1"
             android:label="Good Care"
