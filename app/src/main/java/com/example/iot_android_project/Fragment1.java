@@ -95,8 +95,8 @@ public class Fragment1 extends Fragment {
                 dlg.type.setText(caresArrayList.get(position).getType());
                 dlg.count.setText(caresArrayList.get(position).getCount());
                 dlg.size.setText(caresArrayList.get(position).getSize());
-                dlg.date.setText(caresArrayList.get(position).getDate());
-                dlg.time.setText(caresArrayList.get(position).getTime());
+                dlg.date.setText(" " + caresArrayList.get(position).getDate());
+                dlg.time.setText(" " + caresArrayList.get(position).getTime());
 
                 dlg.show();
             }
