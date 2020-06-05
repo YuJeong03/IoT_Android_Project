@@ -63,28 +63,34 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for(int i = 0; i<membersArrayList.size(); i++){
-                    if(membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())){
+                    Toast.makeText(getApplication(), membersArrayList.get(i).getId(), Toast.LENGTH_SHORT).show();
+                    if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
+                        Toast.makeText(getApplication(), "ID와 PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (id.getText().toString().equals("")) {
+                        Toast.makeText(getApplication(), "ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else if (pw.getText().toString().equals("")) {
+                        Toast.makeText(getApplication(), "PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else if (membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())) {
+                        Toast.makeText(getApplication(), "틀렸습니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+                    else if(membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())){
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("id", id.getText().toString());
                         startActivity(intent);
                         break;
                     }
-                    else if (membersArrayList.get(i).getId().equals(id.getText().toString())) {
-                        Toast.makeText(getApplication(), "PassWord가 틀렸습니다.", Toast.LENGTH_LONG).show();
-                    }else if (membersArrayList.get(i).getPw().equals(pw.getText().toString())) {
-                        Toast.makeText(getApplication(), "ID가 틀렸습니다.", Toast.LENGTH_LONG).show();
-                    }else if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "ID와 PassWord를 입력해주세요.", Toast.LENGTH_LONG).show();
-                    }else if (id.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "ID를 입력해주세요.", Toast.LENGTH_LONG).show();
-                    }else if (pw.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "PassWord를 입력해주세요.", Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(getApplication(), "ID와 PassWord가 틀렸습니다.", Toast.LENGTH_LONG).show();
-                    }
                 }
             }
         });
+
+
 
     }
 

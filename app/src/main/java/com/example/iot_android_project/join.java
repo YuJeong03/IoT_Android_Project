@@ -122,6 +122,7 @@ public class join extends AppCompatActivity {
                 }
                     if (a == false) {
                         Toast.makeText(getApplicationContext(), "중복!", Toast.LENGTH_LONG).show();
+
                     } else {
                         Toast.makeText(getApplicationContext(), "사용 가능!", Toast.LENGTH_LONG).show();
                     }
