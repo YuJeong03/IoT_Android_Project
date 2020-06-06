@@ -4,34 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical">
-
-        <ImageButton
-            android:id="@+id/btn_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00FFFFFF"
-            android:src="@drawable/networking"
-            android:stateListAnimator="@null" />
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/location"
-            android:layout_width="233dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="위치를 선택해주세요"
-            android:inputType="textPersonName"
-            android:textSize="18sp" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="120dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/binggrae"
+            android:text="맡아주기 목록"
+            android:textColor="#7986CB"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn_second"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -41,27 +35,8 @@
             android:text="맡기기"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
+
     </LinearLayout>
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="#FDC2A9" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="2dp"
-        android:fontFamily="@font/binggrae"
-        android:text="맡아주기 목록"
-        android:textColor="#7986CB"
-        android:textSize="24sp" />
-
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"

@@ -107,6 +107,7 @@
 
                     app:fontFamily="@font/binggrae" />
 
+
             </LinearLayout>
 
         </LinearLayout>
@@ -114,34 +115,41 @@
         <LinearLayout
             android:id="@+id/size_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/size"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:text="반려동물 사이즈"
-                android:textAlignment="center"
-                android:textColor="#7986CB"
-                android:textSize="16sp"
-                app:fontFamily="@font/binggrae" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/size_value"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="반려동물 사이즈"
+                    android:textAlignment="center"
+                    android:textColor="#7986CB"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/binggrae" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
 
-                android:textSize="14sp"
-                app:fontFamily="@font/binggrae" />
+                <TextView
+                    android:id="@+id/size_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:textSize="14sp"
+                    app:fontFamily="@font/binggrae" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

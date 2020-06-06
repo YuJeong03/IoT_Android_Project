@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -45,7 +46,8 @@ public class join extends AppCompatActivity {
     private static final String TAG_id = "id";
     JSONArray idArray = null;
     ArrayList<String> idList;
-
+    static TextView location;
+    static String address1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class join extends AppCompatActivity {
         man = (RadioButton) findViewById(R.id.radioButton);
         woman = (RadioButton) findViewById(R.id.radioButton2);
         imgbtn = (ImageButton) findViewById(R.id.imageButton);
+        location = (TextView)findViewById(R.id.location);
 
         Button sign_up = (Button) findViewById(R.id.button2);
         Button check = (Button) findViewById(R.id.button4);
@@ -131,6 +134,16 @@ public class join extends AppCompatActivity {
             }
         });
 
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Dialog_a dlg;
+                dlg = new Dialog_a(join.this);
+                dlg.show();
+            }
+        });
+
     }
 
     public void insert(View view) {
@@ -139,12 +152,12 @@ public class join extends AppCompatActivity {
         String name = name_edit.getText().toString();
         String gender = gender_string;
         String phone = phone_edit.getText().toString();
+        String address = address1;
 
-
-        insertoToDatabase(id, pw, name,gender,phone);
+        insertoToDatabase(id, pw, name,gender,phone, address);
     }
 
-    private void insertoToDatabase(final String id, final String pw, final String name, final  String gender, final String phone) {
+    private void insertoToDatabase(final String id, final String pw, final String name, final  String gender, final String phone, final String address) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -158,7 +171,7 @@ public class join extends AppCompatActivity {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "가입이 완료되었습니다.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), login.class);
                 finish();
                 startActivity(intent);
@@ -181,6 +194,7 @@ public class join extends AppCompatActivity {
                     String name = (String) params[2];
                     String phone = (String) params[3];
                     String gender = (String) params[4];
+                    String address = (String) params[5];
 
                     String link = "http://203.234.62.84:8088/member_insert.php";
                     String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
@@ -188,6 +202,7 @@ public class join extends AppCompatActivity {
                     data += "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
                     data += "&" + URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(phone, "UTF-8");
                     data += "&" + URLEncoder.encode("gender", "UTF-8") + "=" + URLEncoder.encode(gender, "UTF-8");
+                    data += "&" + URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -215,7 +230,7 @@ public class join extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(id, pw, name, phone, gender);
+        task.execute(id, pw, name, phone, gender, address);
     }
 
     protected void showList() {

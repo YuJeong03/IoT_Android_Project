@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".dialo2"></activity>
+        <activity android:name=".spinner_item"></activity>
+        <activity android:name=".dialo2" />
         <activity android:name=".Chatting" />
         <activity android:name=".sub" />
         <activity android:name=".join" />

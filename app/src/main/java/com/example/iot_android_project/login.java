@@ -34,26 +34,30 @@ public class login extends AppCompatActivity {
     String myJSON;
 
     ArrayList<member> membersArrayList = new ArrayList<>();
-     ArrayList<HashMap<String, String>> member1;
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_ID= "id";
     private static final String TAG_PW = "pw";
 
+    private static final String TAG_ADDRESS= "address";
+
     JSONArray members = null;
     ArrayList<HashMap<String, String>> memberList;
+    static String address1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        getData("http://203.234.62.84:8088/login.php");
-
-        memberList = new ArrayList<HashMap<String, String>>();
-
         final EditText id = (EditText) findViewById(R.id.editText);
         final EditText pw = (EditText) findViewById(R.id.editText3);
+
+        getData("http://203.234.62.84:8088/login.php");
+        memberList = new ArrayList<HashMap<String, String>>();
+
+
 
         Button btn = (Button)findViewById(R.id.button3);
         Button btn1 = (Button)findViewById(R.id.button2);
@@ -68,20 +72,18 @@ public class login extends AppCompatActivity {
         });
 
 
-
-
-
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     ArrayList<String> id2 = new ArrayList<>();
                     ArrayList<String> pw2 = new ArrayList<>();
+                    ArrayList<String> address = new ArrayList<>();
 
                 for(int i = 0; i<membersArrayList.size(); i++){
                     id2.add(membersArrayList.get(i).getId());
                     pw2.add(membersArrayList.get(i).getPw());
+                    address.add(membersArrayList.get(i).getAddress());
                 }
 
                 if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
@@ -101,19 +103,16 @@ public class login extends AppCompatActivity {
                         if (id2.indexOf(id.getText().toString())==pw2.indexOf(pw.getText().toString())) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("id", id.getText().toString());
+                            intent.putExtra("address", address.get(id2.indexOf(id.getText().toString())));
                             finish();
                             startActivity(intent);
                         }
                     }
                 }
 
-
-
                 }
 
         });
-
-
 
     }
 
@@ -128,14 +127,17 @@ public class login extends AppCompatActivity {
                 JSONObject c = members.getJSONObject(i);
                 String id = c.getString(TAG_ID);
                 String pw = c.getString(TAG_PW);
+                String address = c.getString(TAG_ADDRESS);
 
                 HashMap<String, String> member1 = new HashMap<String, String>();
 
                 member2.setId(id);
                 member2.setPw(pw);
+                member2.setAddress(address);
 
                 member1.put(TAG_ID, id);
                 member1.put(TAG_PW, pw);
+                member1.put(TAG_ADDRESS, address);
 
                 membersArrayList.add(member2);
 
@@ -185,4 +187,5 @@ public class login extends AppCompatActivity {
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
+
 }

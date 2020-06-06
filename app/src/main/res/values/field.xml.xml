@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerArray">
+        <item> 전체보기 </item>
+        <item> Tip </item>
+        <item> 일상 </item>
+        <item> 제보 </item>
+    </string-array>
+</resources>

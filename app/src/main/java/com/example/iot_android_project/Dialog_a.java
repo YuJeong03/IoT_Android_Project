@@ -15,8 +15,6 @@ public class Dialog_a extends Dialog {
     public Dialog_a(final Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);   //다이얼로그의 타이틀바를 없애주는 옵션입니다.
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));  //다이얼로그의 배경을 투명으로 만듭니다.
-        setContentView(R.layout.activity_dialog);     //다이얼로그에서 사용할 레이아웃입니다.
 
                 getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));  //다이얼로그의 배경을 투명으로 만듭니다.
                 setContentView(R.layout.activity_dialog);     //다이얼로그에서 사용할 레이아웃입니다.
@@ -661,8 +659,8 @@ public class Dialog_a extends Dialog {
                     @Override
                     public void onClick(View v) {
 
-                        Fragment1.location.setText(spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString());
-                        Fragment1.address = spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString();
+                        join.location.setText(spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString());
+                        join.address1 = spinner1.getSelectedItem().toString() + " " + spinner2.getSelectedItem().toString() + " " +spinner3.getSelectedItem().toString();
                         dismiss();
                     }
                 });

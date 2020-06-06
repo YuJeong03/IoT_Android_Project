@@ -48,14 +48,17 @@ public class Fragment1 extends Fragment {
 
     static TextView location;
     static String id1;
-    static String address;
+    static String address1;
     static String type;
      static ListAdapter adapter ;
-    public Fragment1(String id)
+    public Fragment1(String id, String address)
     {
         id1 = id;
+        address1 = address;
         // required
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class Fragment1 extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), fragment1_1.class);
                 intent.putExtra("id", id1);
-                intent.putExtra("address", address);
+                intent.putExtra("address", address1);
 
                 startActivity(intent);
 
@@ -113,16 +116,16 @@ public class Fragment1 extends Fragment {
                 dlg.show();
             }
         });
-
-        location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Dialog_a dlg;
-                dlg = new Dialog_a(container.getContext());
-                dlg.show();
-            }
-        });
+//
+//        location.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Dialog_a dlg;
+//                dlg = new Dialog_a(container.getContext());
+//                dlg.show();
+//            }
+//        });
         return layout;
 
 
@@ -166,8 +169,6 @@ public class Fragment1 extends Fragment {
 
                 careList.add(care1);
             }
-
-
                 adapter = new SimpleAdapter(
                         getContext(), careList, R.layout.activity_sub,
                         new String[]{TAG_TYPE, TAG_COUNT, TAG_DATE, TAG_ADDRESS},
