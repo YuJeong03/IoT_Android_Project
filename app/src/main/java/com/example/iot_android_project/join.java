@@ -131,13 +131,6 @@ public class join extends AppCompatActivity {
             }
         });
 
-        imgbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), login.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void insert(View view) {
@@ -166,7 +159,9 @@ public class join extends AppCompatActivity {
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
-
+                Intent intent = new Intent(getApplicationContext(), login.class);
+                finish();
+                startActivity(intent);
 //                Intent intent = new Intent(signup.this, map_plan2_2.class);
 //
 ////                intent.putExtra("trip_area", trip_name);
@@ -175,7 +170,6 @@ public class join extends AppCompatActivity {
 ////                intent.putExtra("date_d", date_d);
 //
 //                startActivity(intent);
-                finish();
             }
 
             @Override

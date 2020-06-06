@@ -7,11 +7,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Dialog_java extends Dialog {
     TextView address, type, count, size, date, time;
     static Button btn, btn1;
+    LinearLayout size_1;
     public Dialog_java( final Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);   //다이얼로그의 타이틀바를 없애주는 옵션입니다.
@@ -20,6 +22,7 @@ public class Dialog_java extends Dialog {
         address = (TextView)findViewById(R.id.address_value);
         type = (TextView)findViewById(R.id.type_value);
         count = (TextView)findViewById(R.id.count_value);
+        size_1 = (LinearLayout)findViewById(R.id.size_1);
         size = (TextView)findViewById(R.id.size_value);
         date = (TextView)findViewById(R.id.date_value);
         time = (TextView)findViewById(R.id.time_value);

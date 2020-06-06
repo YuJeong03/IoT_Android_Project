@@ -49,8 +49,8 @@ public class Fragment1 extends Fragment {
     static TextView location;
     static String id1;
     static String address;
-
-
+    static String type;
+     static ListAdapter adapter ;
     public Fragment1(String id)
     {
         id1 = id;
@@ -78,12 +78,14 @@ public class Fragment1 extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), id1, Toast.LENGTH_LONG).show();
-                Toast.makeText(getActivity(), address, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), fragment1_1.class);
                 intent.putExtra("id", id1);
                 intent.putExtra("address", address);
+
                 startActivity(intent);
+
+                getActivity().finish();
+
             }
         });
 
@@ -92,11 +94,21 @@ public class Fragment1 extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Dialog_java dlg = new Dialog_java(container.getContext());
                 dlg.address.setText(caresArrayList.get(position).getAddress());
-                dlg.type.setText(caresArrayList.get(position).getType());
-                dlg.count.setText(caresArrayList.get(position).getCount());
-                dlg.size.setText(caresArrayList.get(position).getSize());
-                dlg.date.setText(" " + caresArrayList.get(position).getDate());
-                dlg.time.setText(" " + caresArrayList.get(position).getTime());
+                if(caresArrayList.get(position).getType().equals("고양이")){
+                    dlg.type.setText(caresArrayList.get(position).getType());
+                    dlg.size_1.setVisibility(View.GONE);
+                    dlg.count.setText(caresArrayList.get(position).getCount());
+                    dlg.date.setText(" " + caresArrayList.get(position).getDate());
+                    dlg.time.setText(" " + caresArrayList.get(position).getTime());
+                }
+                else if (caresArrayList.get(position).getType().equals("강아지")) {
+                    dlg.type.setText(caresArrayList.get(position).getType());
+                    dlg.size.setText(caresArrayList.get(position).getSize());
+                    dlg.count.setText(caresArrayList.get(position).getCount());
+                    dlg.date.setText(" " + caresArrayList.get(position).getDate());
+                    dlg.time.setText(" " + caresArrayList.get(position).getTime());
+
+                }
 
                 dlg.show();
             }
@@ -105,6 +117,7 @@ public class Fragment1 extends Fragment {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Dialog_a dlg;
                 dlg = new Dialog_a(container.getContext());
                 dlg.show();
@@ -126,7 +139,7 @@ public class Fragment1 extends Fragment {
             for (int i = 0; i < cares.length(); i++) {
                 care care = new care();
                 JSONObject c = cares.getJSONObject(i);
-                String type = c.getString(TAG_TYPE);
+                type = c.getString(TAG_TYPE);
                 String count = c.getString(TAG_COUNT);
                 String size = c.getString(TAG_SIZE);
                 String date = c.getString(TAG_DATE);
@@ -154,11 +167,11 @@ public class Fragment1 extends Fragment {
                 careList.add(care1);
             }
 
-            ListAdapter adapter = new SimpleAdapter(
-                    getContext(), careList, R.layout.activity_sub,
-                    new String[]{TAG_TYPE, TAG_COUNT, TAG_SIZE, TAG_DATE, TAG_ADDRESS},
-                    new int[]{ R.id.type, R.id.count,R.id.size, R.id.date, R.id.address}
-            );
+
+                adapter = new SimpleAdapter(
+                        getContext(), careList, R.layout.activity_sub,
+                        new String[]{TAG_TYPE, TAG_COUNT, TAG_DATE, TAG_ADDRESS},
+                        new int[]{R.id.type, R.id.count, R.id.date, R.id.address});
 
             list.setAdapter(adapter);
 

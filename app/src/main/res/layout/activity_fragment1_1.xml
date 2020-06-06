@@ -324,6 +324,62 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/binggrae_bold"
+                    android:text="반려동물 수"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/cat_RG2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/catbox_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:fontFamily="@font/binggrae"
+                            android:text="1마리" />
+
+                        <RadioButton
+                            android:id="@+id/catbox_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/binggrae"
+                            android:text="2마리" />
+
+                        <RadioButton
+                            android:id="@+id/catbox_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/binggrae"
+                            android:text="3마리 이상" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -473,5 +529,5 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
     </LinearLayout>
-
+    </LinearLayout>
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.iot_android_project;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,13 +24,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class login extends AppCompatActivity {
 
     String myJSON;
 
     ArrayList<member> membersArrayList = new ArrayList<>();
+     ArrayList<HashMap<String, String>> member1;
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_ID= "id";
@@ -55,39 +61,56 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), join.class);
+                finish();
                 startActivity(intent);
+
             }
         });
+
+
+
+
+
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i = 0; i<membersArrayList.size(); i++){
-                    Toast.makeText(getApplication(), membersArrayList.get(i).getId(), Toast.LENGTH_SHORT).show();
-                    if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "ID와 PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (id.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    else if (pw.getText().toString().equals("")) {
-                        Toast.makeText(getApplication(), "PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
-                    else if (membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())) {
-                        Toast.makeText(getApplication(), "틀렸습니다.", Toast.LENGTH_SHORT).show();
-                        break;
-                    }
 
-                    else if(membersArrayList.get(i).getId().equals(id.getText().toString()) && membersArrayList.get(i).getPw().equals(pw.getText().toString())){
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("id", id.getText().toString());
-                        startActivity(intent);
-                        break;
+                    ArrayList<String> id2 = new ArrayList<>();
+                    ArrayList<String> pw2 = new ArrayList<>();
+
+                for(int i = 0; i<membersArrayList.size(); i++){
+                    id2.add(membersArrayList.get(i).getId());
+                    pw2.add(membersArrayList.get(i).getPw());
+                }
+
+                if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
+                    Toast.makeText(getApplication(), "ID와 PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else if (id.getText().toString().equals("")) {
+                    Toast.makeText(getApplication(), "ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else if (pw.getText().toString().equals("")) {
+                    Toast.makeText(getApplication(), "PassWord를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else if (id2.indexOf(id.getText().toString())!=pw2.indexOf(pw.getText().toString())) {
+                    Toast.makeText(getApplication(), "로그인 실패!", Toast.LENGTH_SHORT).show();
+                }
+                else if (id2.contains(id.getText().toString())) {
+                    if(pw2.contains(pw.getText().toString())) {
+                        if (id2.indexOf(id.getText().toString())==pw2.indexOf(pw.getText().toString())) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("id", id.getText().toString());
+                            finish();
+                            startActivity(intent);
+                        }
                     }
                 }
-            }
+
+
+
+                }
+
         });
 
 

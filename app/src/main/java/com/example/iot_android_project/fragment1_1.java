@@ -37,8 +37,8 @@ public class fragment1_1 extends AppCompatActivity {
 
 
     Button btn;
-    RadioGroup RG1, RG2, RG3;
-    RadioButton RB1, RB2, dog_RB1_1, dog_RB1_2, dog_RB1_3, dog_RB_4, dog_RB_5, cat_ch1, cat_ch2;
+    RadioGroup RG1, RG2, RG3, cat_RG2;
+    RadioButton RB1, RB2, dog_RB1_1, dog_RB1_2, dog_RB1_3, dog_RB_4, dog_RB_5, cat_ch1, cat_ch2, cat_RB1_1, cat_RB1_2, cat_RB1_3;
     CheckBox dog_ch3, dog_ch4, dog_ch5, dog_ch6;
     TextView date1, date2, date3, date4;
     TextView time1, time2, time3, time4;
@@ -93,6 +93,12 @@ public class fragment1_1 extends AppCompatActivity {
         RG1 = (RadioGroup) findViewById(R.id.RG1);
         RG2 = (RadioGroup) findViewById(R.id.RG2);
         RG3 = (RadioGroup) findViewById(R.id.RG3);
+
+        cat_RG2 = (RadioGroup) findViewById(R.id.cat_RG2);
+        cat_RB1_1 = (RadioButton) findViewById(R.id.catbox_1_1);
+        cat_RB1_2 = (RadioButton) findViewById(R.id.catbox_1_2);
+        cat_RB1_3 = (RadioButton) findViewById(R.id.catbox_1_3);
+
         RB1 = (RadioButton) findViewById(R.id.checkBox1);
         RB2 = (RadioButton) findViewById(R.id.checkBox2);
         dog_RB1_1 = (RadioButton) findViewById(R.id.dogbox_1_1);
@@ -184,6 +190,25 @@ public class fragment1_1 extends AppCompatActivity {
                 Cat = "고양이";
                 Count = " ";
                 Size = " ";
+            }
+        });
+
+        cat_RB1_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Count = "1마리";
+            }
+        });
+        cat_RB1_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Count = "2마리";
+            }
+        });
+        cat_RB1_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Count = "3마리 이상";
             }
         });
 
@@ -436,9 +461,8 @@ public class fragment1_1 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(fragment1_1.this, MainActivity.class);
-
+                finish();
                 startActivity(intent);
-
             }
 
             @Override
