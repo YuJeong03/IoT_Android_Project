@@ -1,5 +1,6 @@
 package com.example.iot_android_project;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -85,6 +86,8 @@ public class fragment1_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment1_1);
+        ActionBar actionBar = getSupportActionBar();  //제목줄 객체 얻어오기
+        actionBar.setDisplayHomeAsUpEnabled(true);   //업버튼 <- 만들기
 
         Intent intent = getIntent();
         id1 = intent.getStringExtra("id");

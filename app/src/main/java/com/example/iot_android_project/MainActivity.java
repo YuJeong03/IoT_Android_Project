@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case 0:
                     return new Fragment1(id, address);
                 case 1:
-                    return new Fragment2();
+                    return new Fragment2(id);
                 default:
                     return null;
             }

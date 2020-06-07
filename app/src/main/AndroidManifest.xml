@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".spinner_item"></activity>
+        <activity android:name=".write"
+            android:label="Good Care"
+            android:theme="@style/Theme"
+            android:parentActivityName=".MainActivity"
+            ></activity>
+        <activity android:name=".spinner_item" />
         <activity android:name=".dialo2" />
         <activity android:name=".Chatting" />
         <activity android:name=".sub" />
@@ -23,7 +28,9 @@
         <activity
             android:name=".fragment1_1"
             android:label="Good Care"
-            android:theme="@style/Theme" />
+            android:theme="@style/Theme"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".splash"
             android:screenOrientation="portrait"
