@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView listview ;
     ImageButton menu;
     View v1, v2;
-    static String id, address;
+    static String id, address, phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         address = intent.getStringExtra("address");
+        phone = intent.getStringExtra("phone");
+
 
         pager = (ViewPager)findViewById(R.id.pager);
+
         final Button btn_first = (Button)findViewById(R.id.btn_first);
         final Button btn_second = (Button)findViewById(R.id.btn_second);
         menu = (ImageButton)findViewById(R.id.menu1);
@@ -74,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         listview = (NavigationView) findViewById(R.id.nav_view) ;
 
+
+
         final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nav_view a = new nav_view(id, address);
                 drawerLayout.openDrawer(Gravity.LEFT);
                 listview.getMenu();
             }
@@ -100,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.logout) {
             Intent intent = new Intent(getApplicationContext(), login.class);
             startActivity(intent);
+            finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
@@ -119,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             switch(position)
             {
                 case 0:
-                    return new Fragment1(id, address);
+                    return new Fragment1(id, address, phone);
                 case 1:
                     return new Fragment2(id);
                 default:

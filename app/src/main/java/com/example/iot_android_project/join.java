@@ -75,19 +75,19 @@ public class join extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(name_edit.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "이름을 입력하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "이름을 입력하세요.", Toast.LENGTH_SHORT).show();
                 }else if(id_edit.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "아이디를 입력하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }else if(pw_edit.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }else if(phone_edit.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "전화번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "전화번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }else if(a==false){
-                    Toast.makeText(getApplicationContext(), "아이디 중복을 확인하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "아이디 중복을 확인하세요.", Toast.LENGTH_SHORT).show();
                 }else if(pw_edit.getText().toString().equals(pw_edit_1.getText().toString())){
                     insert(v);
                 }else{
-                    Toast.makeText(getApplicationContext(), "비밀번호를 확인하세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -112,7 +112,7 @@ public class join extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(id_edit.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "ID를 입력해주세요!", Toast.LENGTH_LONG).show();}
+                    Toast.makeText(getApplicationContext(), "ID를 입력해주세요!", Toast.LENGTH_SHORT).show();}
                 else{
                 for(int i = 0; i<idList.size(); i++) {
                     String ab = idList.get(i).toString();
@@ -124,10 +124,10 @@ public class join extends AppCompatActivity {
                     }
                 }
                     if (a == false) {
-                        Toast.makeText(getApplicationContext(), "중복!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "중복!", Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "사용 가능!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "사용 가능!", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -141,6 +141,15 @@ public class join extends AppCompatActivity {
                 Dialog_a dlg;
                 dlg = new Dialog_a(join.this);
                 dlg.show();
+            }
+        });
+
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), login.class);
+                startActivity(intent);
+                finish();
             }
         });
 

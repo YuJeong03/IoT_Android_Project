@@ -17,12 +17,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="right">
 
             <TextView
                 android:id="@+id/address"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:text="주소 : "
                 android:textAlignment="center"
                 android:textColor="#7986CB"
@@ -144,7 +146,7 @@
                 <TextView
                     android:id="@+id/size_value"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="30dp"
 
                     android:textSize="14sp"
                     app:fontFamily="@font/binggrae" />
@@ -160,7 +162,7 @@
                 android:id="@+id/date"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left"
                 android:text="날짜 및 시간"
                 android:textAlignment="center"
                 android:textColor="#7986CB"
@@ -217,8 +219,8 @@
             android:layout_marginRight="50dp"
             android:layout_weight="1"
             android:background="#FDC2A9"
-            android:text="주인과 채팅하기"
             android:stateListAnimator="@null"
+            android:text="주인과 연락"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold"

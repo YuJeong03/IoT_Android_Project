@@ -1,5 +1,6 @@
 package com.example.iot_android_project;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,6 +43,8 @@ public class Fragment1 extends Fragment {
     private static final String TAG_DATE = "date";
     private static final String TAG_TIME = "time";
     private static final String TAG_ADDRESS = "address";
+    private static final String TAG_PHONE = "phone";
+
     static ListView list;
     JSONArray cares = null;
     ArrayList<HashMap<String, String>> careList;
@@ -49,12 +52,14 @@ public class Fragment1 extends Fragment {
     static TextView location;
     static String id1;
     static String address1;
+    static String phone1;
     static String type;
      static ListAdapter adapter ;
-    public Fragment1(String id, String address)
+    public Fragment1(String id, String address, String phone)
     {
         id1 = id;
         address1 = address;
+        phone1 = phone;
         // required
     }
 
@@ -84,7 +89,7 @@ public class Fragment1 extends Fragment {
                 Intent intent = new Intent(getContext(), fragment1_1.class);
                 intent.putExtra("id", id1);
                 intent.putExtra("address", address1);
-
+                intent.putExtra("phone", phone1);
                 startActivity(intent);
 
             }
@@ -92,9 +97,18 @@ public class Fragment1 extends Fragment {
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Dialog_java dlg = new Dialog_java(container.getContext());
                 dlg.address.setText(caresArrayList.get(position).getAddress());
+
+                if (caresArrayList.get(position).getType().equals("강아지")) {
+                    dlg.type.setText(caresArrayList.get(position).getType());
+                    dlg.size_1.setVisibility(View.VISIBLE);
+                    dlg.size.setText(caresArrayList.get(position).getSize());
+                    dlg.count.setText(caresArrayList.get(position).getCount());
+                    dlg.date.setText(caresArrayList.get(position).getDate());
+                    dlg.time.setText(caresArrayList.get(position).getTime());
+                }
                 if(caresArrayList.get(position).getType().equals("고양이")){
                     dlg.type.setText(caresArrayList.get(position).getType());
                     dlg.size_1.setVisibility(View.GONE);
@@ -102,16 +116,20 @@ public class Fragment1 extends Fragment {
                     dlg.date.setText(" " + caresArrayList.get(position).getDate());
                     dlg.time.setText(" " + caresArrayList.get(position).getTime());
                 }
-                else if (caresArrayList.get(position).getType().equals("강아지")) {
-                    dlg.type.setText(caresArrayList.get(position).getType());
-                    dlg.size.setText(caresArrayList.get(position).getSize());
-                    dlg.count.setText(caresArrayList.get(position).getCount());
-                    dlg.date.setText(" " + caresArrayList.get(position).getDate());
-                    dlg.time.setText(" " + caresArrayList.get(position).getTime());
-
-                }
 
                 dlg.show();
+
+                Button btn = (Button)dlg.findViewById(R.id.chatting);
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        intent.setData(Uri.parse("smsto:" + Uri.encode(caresArrayList.get(position).getPhone())));
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 //
@@ -146,6 +164,8 @@ public class Fragment1 extends Fragment {
                 String date = c.getString(TAG_DATE);
                 String time = c.getString(TAG_TIME);
                 String address = c.getString(TAG_ADDRESS);
+                String id = c.getString(TAG_ID);
+                String phone = c.getString(TAG_PHONE);
 
                 HashMap<String, String> care1 = new HashMap<String, String>();
 
@@ -155,6 +175,8 @@ public class Fragment1 extends Fragment {
                 care.setDate(date);
                 care.setTime(time);
                 care.setAddress(address);
+                care.setId(id);
+                care.setPhone(phone);
 
                 care1.put(TAG_TYPE, type);
                 care1.put(TAG_COUNT, count);
@@ -162,6 +184,8 @@ public class Fragment1 extends Fragment {
                 care1.put(TAG_DATE, date);
                 care1.put(TAG_TIME, time);
                 care1.put(TAG_ADDRESS, address);
+                care1.put(TAG_ID, id);
+                care1.put(TAG_PHONE, phone);
 
                 caresArrayList.add(care);
 
@@ -219,5 +243,7 @@ public class Fragment1 extends Fragment {
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
+
+
 
 }

@@ -75,5 +75,14 @@ public class care {
     private String time;
     private String address;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private String phone;
 
 }

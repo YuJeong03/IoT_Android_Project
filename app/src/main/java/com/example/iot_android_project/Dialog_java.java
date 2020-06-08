@@ -2,8 +2,10 @@ package com.example.iot_android_project;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,6 +16,7 @@ public class Dialog_java extends Dialog {
     TextView address, type, count, size, date, time;
     static Button btn, btn1;
     LinearLayout size_1;
+
     public Dialog_java( final Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);   //다이얼로그의 타이틀바를 없애주는 옵션입니다.
@@ -37,6 +40,10 @@ public class Dialog_java extends Dialog {
                 dismiss();   //다이얼로그를 닫는 메소드입니다.
             }
         });
+
+
+
+
 
 
     }

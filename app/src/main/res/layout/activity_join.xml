@@ -249,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="'-' 없이 입력해주세요."
+                android:hint="'-'를 사용하여 입력해주세요."
                 android:textSize="18sp"
                 app:fontFamily="@font/binggrae" />
 

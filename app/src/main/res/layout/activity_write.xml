@@ -35,7 +35,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
         android:layout_margin="3dp"
         android:orientation="vertical">
 
@@ -47,6 +47,12 @@
             android:fontFamily="@font/binggrae"
             android:hint="내용 입력" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <LinearLayout
         android:layout_width="match_parent"

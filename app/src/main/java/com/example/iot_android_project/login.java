@@ -40,7 +40,7 @@ public class login extends AppCompatActivity {
     private static final String TAG_PW = "pw";
 
     private static final String TAG_ADDRESS= "address";
-
+    private static final String TAG_PHONE= "phone";
     JSONArray members = null;
     ArrayList<HashMap<String, String>> memberList;
     static String address1;
@@ -79,11 +79,13 @@ public class login extends AppCompatActivity {
                     ArrayList<String> id2 = new ArrayList<>();
                     ArrayList<String> pw2 = new ArrayList<>();
                     ArrayList<String> address = new ArrayList<>();
+                ArrayList<String> phone = new ArrayList<>();
 
                 for(int i = 0; i<membersArrayList.size(); i++){
                     id2.add(membersArrayList.get(i).getId());
                     pw2.add(membersArrayList.get(i).getPw());
                     address.add(membersArrayList.get(i).getAddress());
+                    phone.add(membersArrayList.get(i).getPhone());
                 }
 
                 if (pw.getText().toString().equals("")&&id.getText().toString().equals("")) {
@@ -104,8 +106,10 @@ public class login extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("id", id.getText().toString());
                             intent.putExtra("address", address.get(id2.indexOf(id.getText().toString())));
-                            finish();
+                            intent.putExtra("phone", phone.get(id2.indexOf(id.getText().toString())));
                             startActivity(intent);
+                            finish();
+
                         }
                     }
                 }
@@ -128,16 +132,19 @@ public class login extends AppCompatActivity {
                 String id = c.getString(TAG_ID);
                 String pw = c.getString(TAG_PW);
                 String address = c.getString(TAG_ADDRESS);
+                String phone = c.getString(TAG_PHONE);
 
                 HashMap<String, String> member1 = new HashMap<String, String>();
 
                 member2.setId(id);
                 member2.setPw(pw);
                 member2.setAddress(address);
+                member2.setPhone(phone);
 
                 member1.put(TAG_ID, id);
                 member1.put(TAG_PW, pw);
                 member1.put(TAG_ADDRESS, address);
+                member1.put(TAG_PHONE, phone);
 
                 membersArrayList.add(member2);
 

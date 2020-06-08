@@ -48,7 +48,7 @@ public class fragment1_1 extends AppCompatActivity {
     String d = "";
     String Dog = "강아지", Cat, Count = "1마리", Size = " ", Service, Date=" ", Time, b = "0";
     int a = 0;
-    String id1, address1;
+    String id1, address1, phone1;
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -92,6 +92,7 @@ public class fragment1_1 extends AppCompatActivity {
         Intent intent = getIntent();
         id1 = intent.getStringExtra("id");
         address1 = intent.getStringExtra("address");
+        phone1 = intent.getStringExtra("phone");
 
         RG1 = (RadioGroup) findViewById(R.id.RG1);
         RG2 = (RadioGroup) findViewById(R.id.RG2);
@@ -443,11 +444,12 @@ public class fragment1_1 extends AppCompatActivity {
         String date = " " + Date;
         String time = " " +Time;
         String address = " " + address1;
+        String phone = " " + phone1;
 
-        insertoToDatabase(id, type, count, size, service, date, time, address);
+        insertoToDatabase(id, type, count, size, service, date, time, address, phone);
     }
 
-    private void insertoToDatabase(final String id, final String type, final String count, final String size, final String service, final String date, final String time, final String address) {
+    private void insertoToDatabase(final String id, final String type, final String count, final String size, final String service, final String date, final String time, final String address, final String phone) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -480,7 +482,7 @@ public class fragment1_1 extends AppCompatActivity {
                     String date = (String) params[5];
                     String time = (String) params[6];
                     String address = (String) params[7];
-
+                    String phone = (String) params[8];
 
                     String link = "http://203.234.62.84:8088/care_insert.php";
                     String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
@@ -491,6 +493,7 @@ public class fragment1_1 extends AppCompatActivity {
                     data += "&" + URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8");
                     data += "&" + URLEncoder.encode("time", "UTF-8") + "=" + URLEncoder.encode(time, "UTF-8");
                     data += "&" + URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8");
+                    data += "&" + URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(phone, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -518,6 +521,6 @@ public class fragment1_1 extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(id, type, count, size, service, date, time, address);
+        task.execute(id, type, count, size, service, date, time, address, phone);
     }
 }
